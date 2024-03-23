@@ -45,15 +45,21 @@ export class CategoryComponent {
     this.hideModalForm();
 
     // show message
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      toast: true,
-      text: 'La categoría se ha registrado con éxito',
-      background: '#D8D8D8',
-      showConfirmButton: false,
-      timer: 2500
-    });
+    const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+Toast.fire({
+  icon: "success",
+  title: "Registro exitoso"
+});
 
   }
 
